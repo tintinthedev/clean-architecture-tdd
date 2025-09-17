@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest --config ./vitest.config.ts",
-    "services:up": "docker compose --env-file .env -f src/infra/docker-compose.yml up"
+    "services:up": "docker compose --env-file .env -f src/infra/docker-compose.yml up -d"
   },
   "dependencies": {
     "dotenv": "^17.2.2",
