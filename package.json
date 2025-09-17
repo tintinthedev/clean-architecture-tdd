@@ -7,7 +7,8 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "test": "vitest --config ./vitest.config.ts"
+    "test": "vitest --config ./vitest.config.ts",
+    "services:up": "docker compose --env-file .env -f src/infra/docker-compose.yml up"
   },
   "dependencies": {
     "dotenv": "^17.2.2",
