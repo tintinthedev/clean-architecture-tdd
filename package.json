@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest --config ./vitest.config.ts",
-    "services:up": "docker compose --env-file .env -f src/infra/docker-compose.yml up -d"
+    "services:up": "docker compose --env-file .env -f src/infra/docker-compose.yml up -d",
+    "migration:create": "node-pg-migrate -j ts create"
   },
   "dependencies": {
     "dotenv": "^17.2.2",
@@ -26,6 +27,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
+    "node-pg-migrate": "^8.0.3",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^3.2.4"
