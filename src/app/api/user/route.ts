@@ -1,10 +1,35 @@
 import { userModel } from "@/models/user";
+import { Validator } from "@/models/validator";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const body = await request.json();
+  try {
+    const body = await request.json();
 
-  const user = await userModel.create(body.email, body.password);
+    const validation = Validator.validate(body);
 
-  return NextResponse.json(user);
+    if (validation.error) {
+      return NextResponse.json(
+        {
+          error: validation.error,
+        },
+        {
+          status: 400,
+        }
+      );
+    }
+
+    const user = await userModel.create(body.email, body.password);
+
+    return NextResponse.json(user);
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: (error as Error).message,
+      },
+      {
+        status: 500,
+      }
+    );
+  }
 }
